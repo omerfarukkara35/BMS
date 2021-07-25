@@ -1,5 +1,6 @@
 
 
+
 #include "main.h"
 
 
@@ -7,14 +8,31 @@ void GPIO_Init(void){
 
 	GPIO_InitTypeDef gpio;
 
-__HAL_RCC_GPIOC_CLK_ENABLE();
+	__HAL_RCC_GPIOC_CLK_ENABLE();
+	__HAL_RCC_GPIOA_CLK_ENABLE();
 
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_RESET);
 
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+
+	//ON BOARD LED PC13
 	gpio.Pin = GPIO_PIN_13;
 	gpio.Mode = GPIO_MODE_OUTPUT_PP;
 	gpio.Pull = GPIO_NOPULL;
 	gpio.Speed = GPIO_SPEED_FREQ_HIGH;
 	HAL_GPIO_Init(GPIOC, &gpio);
 
+	//EXTERNAL LEDS
+	gpio.Pin = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3;
+	gpio.Mode = GPIO_MODE_OUTPUT_PP;
+	gpio.Pull = GPIO_NOPULL;
+	gpio.Speed = GPIO_SPEED_FREQ_HIGH;
+	HAL_GPIO_Init(GPIOA, &gpio);
+
+
 
 }
+

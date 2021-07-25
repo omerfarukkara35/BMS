@@ -1,4 +1,5 @@
 
+
 #include "main.h"
 
 // 72 MHz, 1S Delay with interrupt
@@ -10,3 +11,4 @@ void TIM3_Init(void){
 	HAL_TIM_Base_Init(&timer3);
 
 }
+

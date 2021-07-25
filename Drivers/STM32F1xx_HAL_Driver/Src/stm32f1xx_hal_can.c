@@ -1314,7 +1314,7 @@ HAL_StatusTypeDef HAL_CAN_AddTxMessage(CAN_HandleTypeDef *hcan, CAN_TxHeaderType
   {
     /* Update error code */
     hcan->ErrorCode |= HAL_CAN_ERROR_NOT_INITIALIZED;
-
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
     return HAL_ERROR;
   }
 }
